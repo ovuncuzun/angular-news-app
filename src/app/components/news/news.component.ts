@@ -21,6 +21,10 @@ export class NewsComponent implements OnInit {
 
   loadNewsData() {
     this.getNewsData(false);
+
+    setInterval(() => {
+      this.getNewsData(false);
+    }, 10000);
   }
 
   getNewsData(isNextPage: boolean) {
@@ -28,6 +32,9 @@ export class NewsComponent implements OnInit {
     this.newsDataService.getNewsDataFromAPI(this.pageIndex).subscribe(data => {
       this.newsData = data;
       this.isLoading = false;
+      if (isNextPage) {
+        this.scrollToTop();
+      }
     })
   }
 
@@ -38,6 +45,14 @@ export class NewsComponent implements OnInit {
 
   navigateByURL(link: any) {
     window.open(link);
+  }
+
+  scrollToTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
 }
