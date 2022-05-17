@@ -1,1 +1,23 @@
-<p>news works!</p>
+<div class="row">
+    <div class="col-md-12" *ngFor="let newsItem of newsData?.results">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <img *ngIf="newsItem.image_url" [src]="newsItem.image_url" alt="" />
+                    {{newsItem.title}}
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <p>{{newsItem.description}}</p>
+            </mat-card-content>
+
+            <mat-card-actions>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
+
+<mat-paginator [length]="newsData?.totalResults" [pageSize]="newsData?.results?.length" (page)="loadNextPage($event)">
+</mat-paginator>

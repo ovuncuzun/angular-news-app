@@ -1,0 +1,14 @@
+.wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+mat-card {
+    margin-top: 1em;
+
+    img {
+        width: 20%;
+        height: 20%;
+    }
+}
