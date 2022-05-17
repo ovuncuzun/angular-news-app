@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { NewsComponent } from './components/news/news.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
