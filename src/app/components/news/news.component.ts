@@ -10,6 +10,7 @@ export class NewsComponent implements OnInit {
 
   newsData: any;
   pageIndex: number = 0;
+  isLoading: boolean = false;
 
   constructor(private newsDataService: NewsDataService) { }
 
@@ -22,8 +23,10 @@ export class NewsComponent implements OnInit {
   }
 
   getNewsData(isNextPage: boolean) {
+    this.isLoading = true;
     this.newsDataService.getNewsDataFromAPI(this.pageIndex).subscribe(data => {
       this.newsData = data;
+      this.isLoading = false;
       console.log(data);
     })
   }

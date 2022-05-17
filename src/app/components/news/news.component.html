@@ -1,3 +1,7 @@
+<div class="wrapper">
+    <mat-spinner color="warn" *ngIf="isLoading"></mat-spinner>
+</div>
+
 <div class="row">
     <div class="col-md-12" *ngFor="let newsItem of newsData?.results">
         <mat-card>
