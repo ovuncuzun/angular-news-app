@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { News } from 'src/app/interfaces/news';
 import { NewsDataService } from 'src/app/services/news-data.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { NewsDataService } from 'src/app/services/news-data.service';
 })
 export class NewsComponent implements OnInit {
 
-  newsData: any;
+  newsData: News | undefined;
   pageIndex: number = 0;
   isLoading: boolean = false;
 
@@ -27,7 +28,6 @@ export class NewsComponent implements OnInit {
     this.newsDataService.getNewsDataFromAPI(this.pageIndex).subscribe(data => {
       this.newsData = data;
       this.isLoading = false;
-      console.log(data);
     })
   }
 
