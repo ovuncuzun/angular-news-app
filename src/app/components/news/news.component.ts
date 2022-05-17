@@ -36,4 +36,8 @@ export class NewsComponent implements OnInit {
     this.getNewsData(true);
   }
 
+  navigateByURL(link: any) {
+    window.open(link);
+  }
+
 }
