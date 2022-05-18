@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { News } from 'src/app/interfaces/news';
 import { NewsDataService } from 'src/app/services/news-data.service';
 
@@ -12,11 +13,16 @@ export class NewsComponent implements OnInit {
   newsData: News | undefined;
   pageIndex: number = 0;
   isLoading: boolean = false;
+  subscription: Subscription | undefined;
 
   constructor(private newsDataService: NewsDataService) { }
 
   ngOnInit(): void {
     this.loadNewsData();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   loadNewsData() {
@@ -29,7 +35,7 @@ export class NewsComponent implements OnInit {
 
   getNewsData(isNextPage: boolean) {
     this.isLoading = true;
-    this.newsDataService.getNewsDataFromAPI(this.pageIndex).subscribe(data => {
+    this.subscription = this.newsDataService.getNewsDataFromAPI(this.pageIndex).subscribe(data => {
       this.newsData = data;
       this.isLoading = false;
       if (isNextPage) {
