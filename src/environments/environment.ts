@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiKey: 'pub_7477beb02f9c5a1d0c116bd2a5cadde220d4',
+  apiKey: 'pub_7519e6bf183bf27a73d2c70073542d05a604',
   apiUrl: 'https://newsdata.io/api/1/news'
 };
 
