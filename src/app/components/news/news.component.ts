@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { News } from 'src/app/interfaces/news';
 import { NewsDataService } from 'src/app/services/news-data.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-news',
@@ -14,6 +15,7 @@ export class NewsComponent implements OnInit {
   pageIndex: number = 0;
   isLoading: boolean = false;
   subscription: Subscription | undefined;
+  intervalSubscription: Subscription | undefined;
 
   constructor(private newsDataService: NewsDataService) { }
 
@@ -21,16 +23,12 @@ export class NewsComponent implements OnInit {
     this.loadNewsData();
   }
 
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
-  }
-
   loadNewsData() {
     this.getNewsData(false);
 
-    setInterval(() => {
+    this.intervalSubscription = interval(10000).subscribe(() => {
       this.getNewsData(false);
-    }, 10000);
+    });
   }
 
   getNewsData(isNextPage: boolean) {
@@ -61,4 +59,8 @@ export class NewsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.intervalSubscription?.unsubscribe();
+    this.subscription?.unsubscribe();
+  }
 }

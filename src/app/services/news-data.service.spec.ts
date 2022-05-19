@@ -58,7 +58,7 @@ describe('NewsdataService', () => {
       expect(data).toEqual(newsData);
     });
 
-    const request = httpMock.expectOne('https://newsdata.io/api/1/news?apiKey=pub_7521df2149f21e01238213a70d1f22610f54&language=en&page=0');
+    const request = httpMock.expectOne('https://newsdata.io/api/1/news?apiKey=pub_752579bcfc55ae83bbed619b88e8a3b0358e&language=en&page=0');
     expect(request.request.method).toBe('GET');
     request.flush(newsData);
   });
